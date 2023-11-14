@@ -20,7 +20,7 @@ While this is a personal website, I'm open to suggestions and contributions, esp
 
 ## Contact
 
-For any further questions or to get in touch with me, please reach out through [Preferred Contact Method].
+For any further questions or to get in touch with me, please reach out through the website.
 
 Thank you for visiting!
 
