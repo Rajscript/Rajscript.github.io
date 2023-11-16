@@ -492,12 +492,12 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 					</div>
 					<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
 						<div class="col-md-12">
-							<p class="work-menu"><span><a href="#" class="active">Personal Project</a></span> <span><a href="#">Volunteer Project</a></span> <span><a href="#">Apps</a></span> <span><a href="#">Apps</a></span></p>
+							<p class="work-menu"><span><a href="#" data-filter="All" class="active">All</a></span><span><a href="#" data-filter="Personal">Personal Project</a></span> <span><a href="#" data-filter="Volunteer">Volunteer Project</a></span> <span><a href="#" data-filter="Apps">Apps</a></span> <span><a href="#" data-filter="Dashboard">Dashboard</a></span></p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/trails-to-health.jpg);">
+							<div class="project" style="background-image: url(images/trails-to-health.jpg);" data-category='["All","Personal", "Apps"]'>
 								<div class="desc">
 									<div class="con">
 										<h3><a href="https://github.com/Rajscript/Trails-To-Health">Trails to health</a></h3>
@@ -512,7 +512,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 							</div>
 						</div>
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="project" style="background-image: url(images/anomaly_detection.jpg);">
+							<div class="project" style="background-image: url(images/anomaly_detection.jpg);" data-category='["All", "Personal"]'>
 								<div class="desc">
 									<div class="con">
 										<h3><a href="https://github.com/Rajscript/Anomaly-Detection-Splash">Anomaly Detection</a></h3>
@@ -529,7 +529,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 							</div>
 						</div>
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
-							<div class="project" style="background-image: url(images/multilingual.avif);">
+							<div class="project" style="background-image: url(images/multilingual.avif);" data-category='["All", "Volunteer", "Apps"]'>
 								<div class="desc">
 									<div class="con">
 										<h3><a href="work.html">Multilingual Document Translation and Analysis System with Interactive Chatbot Interface</a></h3>
@@ -546,7 +546,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 							</div>
 						</div>
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInBottom">
-							<div class="project" style="background-image: url(https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80);">
+							<div class="project" style="background-image: url(https://images.unsplash.com/photo-1477414348463-c0eb7f1359b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80);" data-category='["All", "Personal", "Apps"]'>
 								<div class="desc">
 									<div class="con">
 										<h3><a href="https://github.com/Rajscript/Autumn_Leaves">Autumn Leaves</a></h3>
@@ -561,7 +561,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 							</div>
 						</div>
 						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="project" style="background-image: url(images/UN-Datathon-2023.jpeg);">
+							<div class="project" style="background-image: url(images/UN-Datathon-2023.jpeg);" data-category='["All", "Volunteer"]'>
 								<div class="desc">
 									<div class="con">
 										<h3><a href="https://github.com/UN-datathon-2023/UN-Datathon2023">Forecast model for fires in Sumatra Indonesia: UN Datathon 2023</a></h3>
@@ -575,7 +575,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
+				<!--	<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
 							<div class="project" style="background-image: url(images/img-6.jpg);">
 								<div class="desc">
 									<div class="con">
@@ -590,10 +590,10 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>  -->	
 					<div class="row">
 						<div class="col-md-12 animate-box">
-							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
+							<p><a href="#" id="loadMoreButton" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
 						</div>
 					</div>
 				</div>
@@ -638,7 +638,7 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					<div class="row">
 						<div class="col-md-12 animate-box">
 							<p><a href="#" class="btn btn-primary btn-lg btn-load-more">Load more <i class="icon-reload"></i></a></p>
@@ -730,8 +730,11 @@ Copyright <script>document.write(new Date().getFullYear());</script> All rights 
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- Counters -->
 	<script src="js/jquery.countTo.js"></script>
-	
-	
+	<!-- Filter -->
+    <script src="js/filter.js"></script>
+	<!-- Load more button -->
+	<script src="js/load.js"></script>
+
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
 
