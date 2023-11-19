@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<!-- Meta tags, title, and CSS links -->
+        <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Jackson Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	</head>
+	<body>
+		<div id="colorlib-page">
+			<div class="container-wrap">
+				<!-- Sidebar and Navigation -->
+				
+				<div id="colorlib-main">
+					<!-- Blog Section -->
+					<section class="colorlib-blog" data-section="blog">
+						<div class="colorlib-narrow-content">
+							<div class="row">
+								<!--<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+									<span class="heading-meta">Recent Work</span>
+									<h2 class="colorlib-heading">Multilingual Document Translation and Analysis System with Interactive Chatbot Interface</h2>
+                                    <img src="../images/multilingual copy.jpg" alt="Header Image" style="width: 100%; height: auto; object-fit: contain;">
+								</div>-->
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInLeft">
+									<article class="blog-entry">
+										<div class="blog-wrap">
+											<span class="heading-meta">Volunteer Project</span>
+											<h2 class="colorlib-heading">Multilingual Document Translation and Analysis System with Interactive Chatbot Interface</h2>
+											<img src="../images/multilingual copy.jpg" alt="Header Image" style="width: 100%; height: auto; object-fit: contain;">
+											<!-- Blog Content -->
+											<h3>Introduction</h3>
+                                            <p>In today's data-driven world, the ability to analyze complex documents efficiently is more crucial than ever. At a recent <a href="https://www.datakind.org/imf-datadive-event/">DataDive event</a>, I had the opportunity to contribute to this field by developing a cutting-edge system for multilingual document translation and analysis, complete with an interactive chatbot interface. This blog delves into the intricate details of this innovative system.</p>
+                                            <h3>The Genesis of the Project</h3>
+                                            <p>The project was conceptualized to address a common challenge in data analysis: extracting and understanding information from documents in various languages. The need was to create a system that not only translates these documents but also allows users to interactively query them, making the process of data extraction and analysis as seamless as possible.</p>
+											<h3>The Core Components</h3>
+                                            <p>The system is built on a robust foundation, comprising several key technologies and frameworks:
+                                               <li><strong>Streamlit: </strong>A powerful tool for creating web applications for machine learning and data science projects. It serves as the backbone of our system, providing a user-friendly interface.</li>
+                                               <li><strong>PyPDF2 and PdfFileReader: </strong> These Python libraries are used for handling PDF files, allowing us to read and process the content of the documents.</li>
+                                               <li><strong>Langchain and OpenAI Embeddings: </strong> These components are pivotal for handling the language processing and translation aspects. They enable the system to understand and translate the content of the documents accurately.</li>
+                                               <li><strong>Azure OpenAI and FAISS: </strong>Azure's implementation of OpenAI provides the artificial intelligence for the chatbot, while FAISS (Facebook AI Similarity Search) is used for efficient searching within the document.</li>
+                                               <li><strong>Google Translate: </strong> An essential part of the translation pipeline, enabling the conversion of content from various languages into English.</li>
+                                            </p>
+                                            <h3>The Working Mechanism</h3>
+                                            <p>The system operates in a few intuitive steps:
+                                               <li><strong>Document Upload: </strong>Users start by uploading a PDF file containing the documentation they wish to analyze.</li>
+                                               <li><strong>Document Processing: </strong>The uploaded document is processed using PyPDF2, and the content is split into manageable chunks using the Langchain text splitter.</li>
+                                               <li><strong>Translation and Embedding: </strong>The chunks are then passed through Google Translate and OpenAI embeddings to understand and translate the content.</li>
+                                               <li><strong>Data Storage and Retrieval: </strong>The processed data is stored in a FAISS database, allowing for efficient retrieval during queries.</li>
+                                               <li><strong>Interactive Chatbot Interface: </strong>Users interact with the system through a chatbot, powered by Azure OpenAI. They can ask questions in natural language, and the chatbot responds with relevant information extracted from the document.</li>
+                                               <li><strong>Document Display: </strong>When the chatbot finds a valid answer, related document sections pop up, allowing users to see the context of the information provided.</li>
+                                            </p>
+
+                                            <h3>Challenges and Solutions: Refining the Chatbot for Focused Analysis</h3>
+                                            <h4>Initial Challenges</h4>
+                                            <p>The development of our multilingual document analysis system wasn't without its challenges. Initially, the chatbot was too broad in its responses. It answered queries that were unrelated to the content of the uploaded PDF documents. For example, if a user asked, "What is Star Wars?" the chatbot would provide an answer, despite the fact that this information was irrelevant to the document's content. This was problematic because our primary objective was to extract and analyze data specifically from the uploaded documents, not to provide general knowledge.</p>
+                                            <h4>Tailoring the Chatbot’s Responses</h4>
+                                            <p>To address this, I implemented a critical modification to the chatbot's query processing. I added a restrictive prompt to the chatbot's programming, instructing it to answer only queries relevant to the uploaded PDF. This modification was vital to ensure that the chatbot remained focused on the document at hand. If faced with questions outside the scope of the document, the chatbot was programmed to respond with "I don't know." This change significantly enhanced the chatbot's utility, making it a more effective tool for document-specific queries.</p>
+                                            <h4>Extracting Metadata in JSON Format</h4>
+                                            <p>Another significant issue was related to the extraction of metadata from the PDF documents. The end goal was not just to analyze the document content but also to extract and utilize the metadata. To achieve this, I enhanced the chatbot's functionality to interpret queries and generate responses in JSON format. This approach enabled us to directly obtain the metadata in a structured, downloadable format, which greatly facilitated the process of data analysis and integration.</p>
+                                            <h4>Enhancing Precision: The Role of Temperature Setting</h4>
+                                            <p>In addition to the aforementioned solutions, another important aspect that contributed significantly to the effectiveness of the chatbot was the adjustment of the model's temperature setting. In AI language models, the temperature parameter controls the randomness of the generated responses. By setting the temperature to 0, I tailored the chatbot to provide more concise and specific answers.</p>
+                                            <p>Why Temperature Matters
+                                                <li><strong>Clarity and Directness: </strong> In question-answering scenarios, especially when dealing with complex document analysis, clarity and directness in responses are crucial. A lower temperature setting ensures that the model's responses are straightforward and relevant to the query, reducing the likelihood of ambiguous or off-topic answers.</li>
+                                                <li><strong>Focus on Relevant Information: </strong>Given the specialized nature of this chatbot - to analyze and extract information from specific documents - it was essential to minimize any potential 'noise' in its responses. A temperature of 0 helped in achieving this, making the chatbot more focused and effective in parsing and responding to the queries related to the document's content. </li>
+                                            </p>
+                                            <h3>Result</h3>
+                                            <p>Experience the functionality of the Chatbot firsthand in the following video. It showcases the process of uploading a PDF file and illustrates how the chatbot generates precise answers to questions based on the information contained in the document.</p>
+                                            <div class="video-container">
+                                                <video width="560" height="315" controls>
+                                                  <source src="../video/App-version3.webm" type="video/mp4">
+                                                  Your browser does not support the video tag.
+                                                </video>
+                                              </div>
+                                            
+                                            <h3>Limitations and Future Work</h3>
+                                            <p>Despite the successes in refining the chatbot for more focused and accurate responses, there were limitations observed in its performance. Notably, the chatbot did not always provide complete metadata from the documents. This inconsistency poses a challenge for comprehensive data extraction and analysis. Different iterations of the query prompt were tested, but a perfect solution for extracting all necessary data in every instance has yet to be found. Future work will involve fine-tuning the model with specific focus on PDF metadata extraction to improve its ability to consistently retrieve complete and accurate metadata. Enhancing the chatbot's capabilities in this area will be a crucial step in realizing the full potential of this innovative system.</p>
+                                            <h3>Conclusion</h3>
+                                            <p>These enhancements transformed the chatbot from a general-purpose AI assistant into a specialized tool for document analysis. By restricting its responses to document-related queries and enabling JSON-formatted metadata extraction, the chatbot became an invaluable component of our document translation and analysis system. The combination of restrictive prompts, the capability to generate JSON-formatted responses, and a zero-temperature setting for more precise answers, all contributed to creating a highly efficient and targeted chatbot for our multilingual document analysis system. These technical decisions were instrumental in transforming the chatbot into a focused analytical tool, tailored to meet the specific demands of document translation and metadata extraction. This experience underscores the importance of tailored solutions in AI development, ensuring that the tools we create are not just powerful, but also precisely aligned with their intended purpose. The journey of refining this system continues, with a focus on overcoming the current limitations and enhancing its capabilities for even more effective and comprehensive document analysis.</p>
+                                            <!-- More content goes here -->
+
+											<div class="desc">
+												<!-- Further details, read more button, etc. -->
+											</div>
+										</div>
+									</article>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Other Sections -->
+					<!-- About, Skills, Education, Work, etc. -->
+
+				</div> <!-- end:colorlib-main -->
+			</div> <!-- end:container-wrap -->
+		</div> <!-- end:colorlib-page -->
+
+		<!-- jQuery and other scripts -->
+        <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="../js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!-- Counters -->
+	<script src="../js/jquery.countTo.js"></script>
+	<!-- Filter -->
+    <script src="../js/filter.js"></script>
+	<!-- Load more button -->
+	<script src="../js/load.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="../js/main.js"></script>
+	</body>
+</html>
