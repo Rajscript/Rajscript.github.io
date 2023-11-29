@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Datathon 2023 - Raj's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Add other CSS files as needed
+    <link rel="stylesheet" href="css/style.css"> -->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+    <!-- Navigation (If you have a common navbar, you can include it here) -->
+
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="blog-title">Trail Difficulty Clustering</h1>
+            <p class="lead blog-description">Showcasing clustering model behind the "trails-to-health" recommendation tool.</p>
+            <img src="../images/difficult-trail-vladislav-babienko-KTpSVEcU0XU-unsplash.jpg" alt="Header Image"  style="width: 100%; height: auto; object-fit: contain;">
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div class="blog-post">
+                    <h2 class="blog-post-title">Clustering for mixed type data</h2>
+                    <p class="blog-post-meta">November 20, 2023 by <a href="../index.html">Raj De</a></p>
+
+                    <h3>The Challenge of Quantifying Trail Difficulty</h3>
+                    
+                    <p>Trail difficulty assessment is a crucial aspect of any trail recommendation system. However, determining the level of difficulty for a trail is not a straightforward task. Numerous factors come into play, such as trail length, elevation gain, angle of descent, and type of trail (whether it's a remote path or a well-marked route). One significant question arises: how do we accurately weigh each of these factors to arrive at a reliable difficulty rating?</p>
+                    
+                    <h3>The Initial Approach: Manual Weighting</h3>
+                    <p>Initially, I attempted to assign manual weight factors to each attribute based on my discretion.
+                         This method, while straightforward, was highly subjective and lacked a factual, data-driven foundation. A more objective and robust approach was necessary to eliminate personal bias and ensure consistency in the difficulty ratings.</p>
+                    <h3>Embracing Unsupervised Learning: Clustering Algorithms</h3>
+                    <p> To achieve a more data-driven approach, I turned to unsupervised learning techniques, specifically clustering algorithms. These algorithms are designed to group data points into clusters based on their similarities, without any human intervention. Several clustering techniques were considered, including K-means clustering, Hierarchical clustering (both Agglomerative and Divisive approaches), DBSCAN, and its extension HDBSCAN.</p>
+                   
+                    <h3>Selecting the Right Algorithm for Mixed Data Types</h3>
+                    <p>Clustering algorithms are pivotal in data science for grouping data points with similar characteristics. Common clustering techniques include K-means for partitioning, hierarchical methods such as Agglomerative clustering, and density-based approaches like HDBSCAN.</p>
+
+                    <h3>Adapting Categorical Data for Agglomerative Clustering</h3>
+                    <p>Agglomerative clustering is traditionally suited for numerical data. To incorporate categorical data, such as the type of trail, I used one-hot encoding, which transforms categorical variables into a binary matrix—effectively treating them as numerical data. This approach allowed for the seamless integration of mixed data types into the clustering analysis.</p>
+
+                    <h3>The Limitation of Agglomerative Clustering with Mixed Data</h3>
+                    <p>Despite the initial integration, Agglomerative clustering did not effectively disaggregate the categorical data's influence on the results. To address this, I turned to K-Prototypes—a robust algorithm that combines K-means and K-modes, ideal for clustering mixed data types. K-modes clustering handles categorical variables by measuring the modes instead of means, allowing for the categorization of non-numeric data points based on the frequency of categories.</p>
+
+                    <h3>Optimizing Cluster Count with the Elbow Method</h3>
+                    <img src="../images/Kmodes_elbow.png" style="width: auto; height: auto; object-fit: contain;">
+                    <p>Finding the sweet spot for the number of clusters is key to getting our groupings just right. So, I plotted an elbow plot to see where the benefits of adding more clusters start to taper off. It turns out that at cluster number four, we hit that point – the elbow. That's where the drop in within-cluster variation isn't as steep anymore. Adding more clusters beyond this point doesn't really do us much good, as the gains are pretty minimal. So, we decided to go with four clusters since that's where our plot showed the best balance.</p>
+
+                    <h3>Implementing K-Prototypes for Refined Clustering</h3>
+                    <p>By implementing K-Prototypes, I was able to effectively cluster the data, achieving clear disaggregation based on the categorical variables. The resulting clusters were more representative of the underlying patterns in the data, providing a nuanced understanding of the dataset.</p>
+
+                    <h3>Conclusion: A Data-Driven Approach to Trail Difficulty</h3>
+                    <p>Switching from the old-school method of just eyeballing weights to figure out trail difficulty, we moved to a more data-driven approach. We started off with Agglomerative clustering and threw in some one-hot encoding to mix numerical and categorical data. But the real change was when we brought in K-Prototypes. This worked really well for our mixed bag of data, cutting through the noise and giving us neat, bias-free clusters.</p>
+                    <p>To make sure we got the number of clusters right, we didn't just guess – we used an elbow plot. Now, new trail seekers can hit up the Trails to Health app and not feel overwhelmed by choices. Just choose one of the difficulty mode and you are good to go. Check out the <a href="https://rajscript-trails-to-health-appapp-2g8tkh.streamlit.app/">Trails to Health app</a> and get your hike on!</p>
+                    <!-- The rest of your blog content goes here -->
+
+                </div><!-- /.blog-post -->
+                
+                <!-- You can add more blog posts or pagination here -->
+
+            </div><!-- /.blog-main -->
+
+            <!-- Include a sidebar if you have one -->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <!-- Footer (If you have a common footer, you can include it here) -->
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="../js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!-- Counters -->
+	<script src="../js/jquery.countTo.js"></script>
+	<!-- Filter -->
+    <script src="../js/filter.js"></script>
+	<!-- Load more button -->
+	<script src="../js/load.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="../js/main.js"></script>
+
+
+</body>
+</html>
