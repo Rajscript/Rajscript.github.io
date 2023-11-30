@@ -64,9 +64,6 @@
                     <h3>Embracing Unsupervised Learning: Clustering Algorithms</h3>
                     <p> To achieve a more data-driven approach, I turned to unsupervised learning techniques, specifically clustering algorithms. These algorithms are designed to group data points into clusters based on their similarities, without any human intervention. Several clustering techniques were considered, including K-means clustering, Hierarchical clustering (both Agglomerative and Divisive approaches), DBSCAN, and its extension HDBSCAN.</p>
                    
-                    <h3>Selecting the Right Algorithm for Mixed Data Types</h3>
-                    <p>Clustering algorithms are pivotal in data science for grouping data points with similar characteristics. Common clustering techniques include K-means for partitioning, hierarchical methods such as Agglomerative clustering, and density-based approaches like HDBSCAN.</p>
-
                     <h3>Adapting Categorical Data for Agglomerative Clustering</h3>
                     <p>Agglomerative clustering is traditionally suited for numerical data. To incorporate categorical data, such as the type of trail, I used one-hot encoding, which transforms categorical variables into a binary matrix—effectively treating them as numerical data. This approach allowed for the seamless integration of mixed data types into the clustering analysis.</p>
 
@@ -78,11 +75,11 @@
                     <p>Finding the sweet spot for the number of clusters is key to getting our groupings just right. So, I plotted an elbow plot to see where the benefits of adding more clusters start to taper off. It turns out that at cluster number four, we hit that point – the elbow. That's where the drop in within-cluster variation isn't as steep anymore. Adding more clusters beyond this point doesn't really do us much good, as the gains are pretty minimal. So, we decided to go with four clusters since that's where our plot showed the best balance.</p>
 
                     <h3>Implementing K-Prototypes for Refined Clustering</h3>
-                    <p>By implementing K-Prototypes, I was able to effectively cluster the data, achieving clear disaggregation based on the categorical variables. The resulting clusters were more representative of the underlying patterns in the data, providing a nuanced understanding of the dataset.</p>
+                    <p>By implementing K-Prototypes, I was able to effectively cluster the data, achieving clear disaggregation. The resulting clusters were more representative of the underlying patterns in the data, providing a nuanced understanding of the dataset.</p>
 
                     <h3>Conclusion: A Data-Driven Approach to Trail Difficulty</h3>
-                    <p>Switching from the old-school method of just eyeballing weights to figure out trail difficulty, we moved to a more data-driven approach. We started off with Agglomerative clustering and threw in some one-hot encoding to mix numerical and categorical data. But the real change was when we brought in K-Prototypes. This worked really well for our mixed bag of data, cutting through the noise and giving us neat, bias-free clusters.</p>
-                    <p>To make sure we got the number of clusters right, we didn't just guess – we used an elbow plot. Now, new trail seekers can hit up the Trails to Health app and not feel overwhelmed by choices. Just choose one of the difficulty mode and you are good to go. Check out the <a href="https://rajscript-trails-to-health-appapp-2g8tkh.streamlit.app/">Trails to Health app</a> and get your hike on!</p>
+                    <p>Switching from the old-school method of just eyeballing weights to figure out trail difficulty, I moved to a more data-driven approach. I started off with Agglomerative clustering and threw in some one-hot encoding to mix numerical and categorical data. But the real change was when I brought in K-Prototypes. This worked really well for our mixed bag of data, cutting through the noise and giving us neat, bias-free clusters.</p>
+                    <p>To make sure I got the number of clusters right, I didn't just guess – I used an elbow plot. Now, new trail seekers can hit up the Trails to Health app and not feel overwhelmed by choices. Just choose one of the difficulty mode and you are good to go. Check out the <a href="https://rajscript-trails-to-health-appapp-2g8tkh.streamlit.app/">Trails to Health app</a> and get your hike on!</p>
                     <!-- The rest of your blog content goes here -->
 
                 </div><!-- /.blog-post -->
