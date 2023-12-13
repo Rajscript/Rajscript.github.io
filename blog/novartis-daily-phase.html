@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Datathon 2023 - Raj's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Add other CSS files as needed
+    <link rel="stylesheet" href="css/style.css"> -->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="../css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="../css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="../css/flexslider.css">
+	<!-- Flaticons  -->
+	<link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="../css/owl.carousel.min.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+    <!-- Navigation (If you have a common navbar, you can include it here) -->
+
+    <div class="container">
+        <div class="blog-header">
+            <h1 class="blog-title">Cracking the Daily Sales Challenge with LSTM: A Datathon Journey</h1>
+            <p class="lead blog-description">Accurate predictions of future sales leveraging ML models.</p>
+            <img src="../images/daily_sales_Novartis.jpg" alt="Header Image"  style="width: 100%; height: auto; object-fit: contain;">
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 blog-main">
+                <div class="blog-post">
+                    <h2 class="blog-post-title">Daily Sales ratio forecasting</h2>
+                    <p class="blog-post-meta">November 30, 2023 by <a href="../index.html">Raj De</a></p>
+
+                    <h3>Introduction</h3>
+                    
+                    <p>In the dynamic world of sales, having an accurate prediction is a game-changer. That's why, in this datathon challenge, we threw down the gauntlet with the "Daily Sales Problem" - a real head-scratcher we often wrestle with in many company. This challenge was an open invitation for data scientist to tackle the tricky task of predicting daily sales patterns.</p>
+                    <p>Here’s the deal: the current sales predictions are monthly, but that’s not cutting it anymore. What is really needed is to dig into the day-to-day sales, especially when it comes to different country-brand combos. It's all about figuring out if these are going to hit or miss their targets. Enter the concept of "Daily Sales Phasing" - the ratio of sales per working day in a month. Sounds simple, right? Well, not quite.</p>
+                    <h3>The technical hurdle</h3>
+                    <p>It helps us check if our monthly forecasts are on point every single day. But here’s the kicker: sales don’t spread evenly across the month. They vary wildly, depending on the country, the brand, and even the day of the week! Also, while forecasting the total value of sale phase has to remain 1 for all country brand combo.</p>
+                    <h3>The technical hurdle</h3>
+                    <p> Participants needed to predict this daily phasing for each brand in each country for the entire year of 2022. I was provided heaps of historical data from 2013 to 2021 to understand the data.</p>
+                   
+                    <h3>Data and its preprocessing</h3>
+                    <p>Our journey began with a deep dive into sales data. We weren't just looking at numbers – we were looking for patterns unique to each country-brand pair. Some of the available features are the day of the week and working date number that could be used for phase prediction.</p>
+                    <p>But before running any models, I wanted to ensure that there is no anomaly in the data. We do that by plotting box plots for this features. Here we find number of missing days to exceed over 20 days or more, which made no sense as that is not a typical holiday period for essential medication store. I discovered that some of the data were correct, so I redid the two columns with my own script, to calculate number of days of no work day before and after. Finally I filtered out data for the cases with less than 5 days of holidays before or after as that is more plausible for the training dataset.</p>
+                    <h3>Building the LSTM Vessel</h3>
+                    <p>With our data prepped and ready, we embarked on the exciting phase of crafting our LSTM model. This was a custom-built model, designed to navigate the sales data. In this case data was first sorted temoporally and again divided into 80-20 ratio such that the data was trained on 80% and validated on the last 20% to prevent overfitting. </p>
+                    <pre><code>self.model = Sequential()
+self.model.add(LSTM(32, input_shape=input_shape, activation="relu", return_sequences=False))
+self.model.add(Dropout(0.2))
+self.model.add(Dense(1, activation='relu'))
+self.model.compile(loss="mean_squared_error", optimizer="adam")
+                    </code></pre>
+                    <p>Our model was built using the Keras library, with a sequential model and a single LSTM layer. The Dropout layer was our safeguard against overfitting, ensuring our model stayed robust and versatile. We used the Adam optimizer and the mean squared error loss function. The model was trained for 50 epochs with a really small learning rate(10^-5), with a batch size of 32.</p>                        
+
+                    <h3>Training</h3>
+                    <div style="text-align: center;"> <!-- This div centers the content -->
+                        <img src="../images/Novartis/output_training.png" alt="Model Loss Plot" style="width: auto; height: auto; object-fit: contain;">
+                        <h4>Model Loss Over Epochs training sample a particular country-brand combo.</h4> <!-- This is the title text for the image -->
+                    </div>
+                    <p>I fed it with historical sales data, watching as it learned and improved with each epoch. The EarlyStopping callback was our lookout, preventing us from veering off into the abyss of overtraining.</p>
+                    <p>
+                        <li>X-Axis (Epochs): This axis represents the number of epochs. An epoch is one complete presentation of the data set to be learned to a learning machine. So if you have 50 epochs, it means the entire dataset was passed forward and backward through the neural network 50 times.</li>
+                        <li>Y-Axis (Loss): The y-axis indicates the loss. In machine learning, loss is a number indicating how bad the model's prediction was on a single example. The goal of training a model is to minimize this value.</li>
+                        <li>Train Line (Blue): This line represents the loss on the training dataset. It's the data the model is learning from. As the number of epochs increases, the model gets better at predicting the training data, so the loss decreases.</li>
+                        <li>Validation Line (Orange): This line represents the loss on the validation dataset. This is a separate set of data not used in training but is used to evaluate the model's performance. It provides a check against overfitting — when a model is trained too well on training data and fails to generalize to unseen data.</li>
+                    </p>
+                    <p>The plot shows both training and validation loss decreasing over time, which is a good sign that the model is learning.
+                        Ideally, both lines should follow a similar trend, which they do in this plot. This indicates that the model is generalizing well and not overfitting.
+                        The training loss is slightly lower than the validation loss, which is typical because the model is directly learning from the training data.
+                        Around epoch 10, the validation loss seems to plateau, suggesting that further training might not lead to significant improvements on the validation set.</p>
+                    <h3>Prediction</h3>
+                    <div style="text-align: center;"> <!-- This div centers the content -->
+                        <img src="../images/Novartis/output_prediction.png" alt="Model Prediction Plot" style="width: 100%; height: auto; object-fit: contain;">
+                        <h4>Model prediction sample for particular country-brand combos.</h4> <!-- This is the title text for the image -->
+                    </div>
+                    <p>As our model emerged from the training, it was time to test it out – predicting the sales phasing for 2022. I plugged in the testing dataset in the trained LSTM model to churn out predictions for each country-brand combo. But its not over yet, one key part of this prediction is the phase value need to sum up to one. So, we normalized them, ensuring the total phasing for each month balanced out. This step was crucial in maintaining the integrity and usability of our predictions.</p>
+
+                    <h3>Final words</h3>
+                    <p>I delved into the depths of LSTM models, unearthed insights from mountains of data, and emerged with predictions for daily sales forecasting. If you want to look into the code in more details, you can check it <a href="https://github.com/debsankarde/Novartis-datathon-2023/blob/main/data_submission/Final_file.ipynb">here</a>. While I was able to streamline this process and build a ml pipeline that is scalable and robust in use, it was computationally very expensive due to the data volume. So I looked at alternative easier approaches. After some exploration with other models, I found Catboost as a great alternative. We will discuss that in our next blog.</p>
+                    <!-- The rest of your blog content goes here -->
+
+                </div><!-- /.blog-post -->
+                
+                <!-- You can add more blog posts or pagination here -->
+
+            </div><!-- /.blog-main -->
+
+            <!-- Include a sidebar if you have one -->
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <!-- Footer (If you have a common footer, you can include it here) -->
+
+    <script src="../js/jquery.min.js"></script>
+
+    <script src="../js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="../js/jquery.flexslider-min.js"></script>
+	<!-- Owl carousel -->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!-- Counters -->
+	<script src="../js/jquery.countTo.js"></script>
+	<!-- Filter -->
+    <script src="../js/filter.js"></script>
+	<!-- Load more button -->
+	<script src="../js/load.js"></script>
+
+	<!-- MAIN JS -->
+	<script src="../js/main.js"></script>
+
+
+</body>
+</html>
